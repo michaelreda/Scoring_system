@@ -37,7 +37,7 @@ export class AppComponent {
           purchased:false,
           cars:0
         },restaurant:{
-          parchased:false,
+          purchased:false,
           tables:0
         }
       }
