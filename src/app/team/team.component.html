@@ -1,0 +1,26 @@
+<div  style="background-image:url('../../assets/land1.jpg');background-repeat:no-repeat;background-size:contain;background-position:center;width:550px;height:350px;">
+  <h2 style="position: relative;right: 150px;">Bank: {{money}}</h2>
+<button class="btn btn-warning btn-xs {{money<hotel_price?'disabled':'active'}}" *ngIf="!purchases.hotel.purchased" (click)="buy_hotel()" style="
+    left: 257px;
+    top: 92px;
+    position: relative;    
+">Buy ({{hotel_price}})</button>
+
+<button class="btn btn-warning btn-xs  {{money<cars_shop_price?'disabled':'active'}}" *ngIf="!purchases.cars_shop.purchased" (click)="buy_cars_shop()" style="
+    right: 172px;
+    top: 155px;
+    position: relative;   
+">Buy ({{cars_shop_price}})</button>
+
+<button class="btn btn-warning btn-xs  {{money<hospital_price?'disabled':'active'}}" (click)="buy_hospital()" style="
+    right: 73px;
+    top: 56px;
+    position: relative;  
+">Buy ({{hospital_price}})</button>
+
+<button class="btn btn-warning btn-xs  {{money<restaurant_price?'disabled':'active'}}" (click)="buy_restaurant()" style="
+    right: 125px;
+    top: 152px;
+    position: relative; 
+">Buy ({{restaurant_price}})</button>
+</div>
