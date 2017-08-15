@@ -9,6 +9,9 @@ import { Component, OnInit, Input } from '@angular/core';
 
 
 export class TeamComponent implements OnInit {
+  team_name: string;
+  upgrades: any;
+  teams_upgrades: any;
   @Input() team: number;
   money: any;
   hotel_price = AppSettings.HOTEL_PRICE;
@@ -22,8 +25,10 @@ export class TeamComponent implements OnInit {
   hotelTop;
   carsShopLeft;
   carsShopTop;
+  AppSettings;
 
   ngOnInit() {
+    this.AppSettings = AppSettings;
     if (this.team == 1) {
       this.hotelLeft = "439px";
       this.hotelTop = "150px";
@@ -46,6 +51,18 @@ export class TeamComponent implements OnInit {
       this.carsShopTop = "582px";
     }
 
+    switch(this.team){
+      case 1: this.team_name=AppSettings.team1_name;break;
+      case 2: this.team_name=AppSettings.team2_name;break;
+      case 3: this.team_name=AppSettings.team3_name;break;
+      case 4: this.team_name=AppSettings.team4_name;break;
+    }
+  
+    this.update_local_storage();
+    console.log(this.purchases.hotel);
+  }
+
+  update_local_storage() {
     this.teams_money = JSON.parse(localStorage.getItem('money'));
     switch (this.team) {
       case 1: this.money = this.teams_money.team1; break;
@@ -61,9 +78,17 @@ export class TeamComponent implements OnInit {
       case 4: this.purchases = this.teams_purchases.team4; break;
     }
 
+    this.teams_upgrades = JSON.parse(localStorage.getItem('upgrades'));
+    switch (this.team) {
+      case 1: this.upgrades = this.teams_upgrades.team1; break;
+      case 2: this.upgrades = this.teams_upgrades.team2; break;
+      case 3: this.upgrades = this.teams_upgrades.team3; break;
+      case 4: this.upgrades = this.teams_upgrades.team4; break;
+    }
   }
 
   buy_hotel() {
+    this.update_local_storage();
     if (this.money >= AppSettings.HOTEL_PRICE) {
       console.log("team " + this.team + " bought hotel");
       this.transaction(this.team, -AppSettings.HOTEL_PRICE);
@@ -74,6 +99,7 @@ export class TeamComponent implements OnInit {
     }
   }
   buy_cars_shop() {
+    this.update_local_storage();
     if (this.money >= AppSettings.CARS_SHOP_PRICE) {
       console.log("team " + this.team + " bought cars shop");
       this.transaction(this.team, -AppSettings.CARS_SHOP_PRICE);
@@ -85,6 +111,7 @@ export class TeamComponent implements OnInit {
   }
 
   buy_hospital() {
+    this.update_local_storage();
     if (this.money >= AppSettings.HOSPITAL_PRICE) {
       console.log("team " + this.team + " bought hospital");
       this.transaction(this.team, -AppSettings.HOSPITAL_PRICE);
@@ -96,6 +123,7 @@ export class TeamComponent implements OnInit {
   }
 
   buy_restaurant() {
+    this.update_local_storage();
     if (this.money >= AppSettings.RESTAURANT_PRICE) {
       console.log("team " + this.team + " bought restaurant");
       this.transaction(this.team, -AppSettings.RESTAURANT_PRICE);
@@ -104,6 +132,57 @@ export class TeamComponent implements OnInit {
     } else {
       alert("you don't have enough money");
     }
+  }
+
+  upgrade_cars_shop() {
+    this.update_local_storage();
+    this.transaction(this.team, -AppSettings.ten_cars_price);
+    this.upgrades.cars.push(Date.now());
+    switch (this.team) {
+      case 1: this.teams_upgrades.team1 = this.upgrades; break;
+      case 2: this.teams_upgrades.team2 = this.upgrades; break;
+      case 3: this.teams_upgrades.team3 = this.upgrades; break;
+      case 4: this.teams_upgrades.team4 = this.upgrades; break;
+    }
+    localStorage.setItem('upgrades', JSON.stringify(this.teams_upgrades));
+  }
+  upgrade_hotel() {
+    this.update_local_storage();
+    this.transaction(this.team, -AppSettings.ten_rooms_price);
+    this.upgrades.rooms.push(Date.now());
+    switch (this.team) {
+      case 1: this.teams_upgrades.team1 = this.upgrades; break;
+      case 2: this.teams_upgrades.team2 = this.upgrades; break;
+      case 3: this.teams_upgrades.team3 = this.upgrades; break;
+      case 4: this.teams_upgrades.team4 = this.upgrades; break;
+    }
+    localStorage.setItem('upgrades', JSON.stringify(this.teams_upgrades));
+  }
+
+  upgrade_hospital() {
+    this.update_local_storage();
+    this.transaction(this.team, -AppSettings.ten_beds_price);
+    this.upgrades.beds.push(Date.now());
+    switch (this.team) {
+      case 1: this.teams_upgrades.team1 = this.upgrades; break;
+      case 2: this.teams_upgrades.team2 = this.upgrades; break;
+      case 3: this.teams_upgrades.team3 = this.upgrades; break;
+      case 4: this.teams_upgrades.team4 = this.upgrades; break;
+    }
+    localStorage.setItem('upgrades', JSON.stringify(this.teams_upgrades));
+  }
+
+    upgrade_restaurant() {
+    this.update_local_storage();
+    this.transaction(this.team, -AppSettings.ten_tables_price);
+    this.upgrades.tables.push(Date.now());
+    switch (this.team) {
+      case 1: this.teams_upgrades.team1 = this.upgrades; break;
+      case 2: this.teams_upgrades.team2 = this.upgrades; break;
+      case 3: this.teams_upgrades.team3 = this.upgrades; break;
+      case 4: this.teams_upgrades.team4 = this.upgrades; break;
+    }
+    localStorage.setItem('upgrades', JSON.stringify(this.teams_upgrades));
   }
 
   transaction(team, amount) {
@@ -120,14 +199,18 @@ export class TeamComponent implements OnInit {
   purchase(purchase) {
     console.log(this.purchases);
     switch (purchase) {
-      case "hotel": this.purchases.hotel.purchased = true; 
-                          this.purchases.hotel.rooms = AppSettings.DEFAULT_ROOMS_NUM; break;
+      case "hotel": this.purchases.hotel.purchased = true;
+        this.purchases.hotel.rooms = AppSettings.DEFAULT_ROOMS_NUM;
+        this.purchases.hotel.purchased_since = Date.now(); break;
       case "hospital": this.purchases.hospital.purchased = true;
-                         this.purchases.hospital.beds = AppSettings.DEFAULT_BEDS_NUM; break;
+        this.purchases.hospital.beds = AppSettings.DEFAULT_BEDS_NUM;
+        this.purchases.hospital.purchased_since = Date.now(); break;
       case "restaurant": this.purchases.restaurant.purchased = true;
-                         this.purchases.restaurant.tables = AppSettings.DEFAULT_TABLES_NUM; break;
+        this.purchases.restaurant.tables = AppSettings.DEFAULT_TABLES_NUM;
+        this.purchases.restaurant.purchased_since = Date.now(); break;
       case "cars_shop": this.purchases.cars_shop.purchased = true;
-                         this.purchases.cars_shop.cars = AppSettings.DEFAULT_CARS_NUM; break;
+        this.purchases.cars_shop.cars = AppSettings.DEFAULT_CARS_NUM;
+        this.purchases.cars_shop.purchased_since = Date.now(); break;
     }
 
     switch (this.team) {
@@ -137,14 +220,15 @@ export class TeamComponent implements OnInit {
       case 4: this.teams_purchases.team4 = this.purchases; break;
     }
     localStorage.setItem('purchases', JSON.stringify(this.teams_purchases));
+    this.update_local_storage();
   }
 
-  current_profit(){
+  current_profit() {
     var sum = 0;
-    sum+= this.purchases.hospital.beds * AppSettings.bed_per_hour;
-    sum+= this.purchases.hotel.rooms * AppSettings.room_per_hour;
-    sum+= this.purchases.cars_shop.cars * AppSettings.car_per_hour;
-    sum+= this.purchases.restaurant.tables * AppSettings.table_per_hour;
+    sum += (this.purchases.hospital.beds + this.upgrades.beds.length * 10) * AppSettings.bed_per_hour;
+    sum += (this.purchases.hotel.rooms + this.upgrades.rooms.length * 10) * AppSettings.room_per_hour;
+    sum += (this.purchases.cars_shop.cars + this.upgrades.cars.length * 10) * AppSettings.car_per_hour;
+    sum += (this.purchases.restaurant.tables + this.upgrades.tables.length * 10) * AppSettings.table_per_hour;
     return sum;
   }
 

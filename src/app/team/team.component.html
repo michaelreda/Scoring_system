@@ -6,31 +6,112 @@
     left: 9%;
     top: -4%;
     float: left!important;">
-    <h2 style="margin-bottom: 0px;">Bank: {{money}}</h2>
-    <h4 style="float: left;margin-top: 0px;">Profit: {{current_profit()}}/hour</h4>
+    <h3 style="margin-bottom: 0px;">Bank: {{money|number : fractionSize}} $</h3>
+    <h4 style="float: left;margin-top: 0px;">Profit: {{current_profit()|number : fractionSize}} $/hour</h4>
+  </div>
+  <div style="   
+    position: absolute;
+    left: 9%;
+    bottom: 1%;
+    float: left!important;">
+    <h3 style="margin-bottom: 0px;">{{team_name}}'s land</h3>
   </div>
   <!-- hotel buy btn -->
   <button class="btn btn-warning btn-xs {{money<hotel_price?'disabled':'active'}}" *ngIf="!purchases.hotel.purchased" (click)="buy_hotel()"
-    style="position: absolute;left: 77%;top: 31%;">Buy ({{hotel_price}})</button>
+    style="position: absolute;left: 77%;top: 31%;">Buy ({{hotel_price|number : fractionSize}}$)</button>
 
   <!-- cars_shop buy btn -->
   <button class="btn btn-warning btn-xs  {{money<cars_shop_price?'disabled':'active'}}" *ngIf="!purchases.cars_shop.purchased"
-    (click)="buy_cars_shop()" style="position: absolute;left: 10%;top: 48%;">Buy ({{cars_shop_price}})</button>
+    (click)="buy_cars_shop()" style="position: absolute;left: 10%;top: 48%;">Buy ({{cars_shop_price|number : fractionSize}}$)</button>
 
   <!-- hospital buy btn -->
   <button class="btn btn-warning btn-xs  {{money<hospital_price?'disabled':'active'}}" *ngIf="!purchases.hospital.purchased"
-    (click)="buy_hospital()" style="position: absolute;left: 43%;top: 18%;">Buy ({{hospital_price}})</button>
+    (click)="buy_hospital()" style="position: absolute;left: 43%;top: 18%;">Buy ({{hospital_price|number : fractionSize}}$)</button>
 
   <!-- restaurant buy btn -->
   <button class="btn btn-warning btn-xs  {{money<restaurant_price?'disabled':'active'}}" *ngIf="!purchases.restaurant.purchased"
     (click)="buy_restaurant()" style="
 position: absolute;left: 34%;top: 58%;
-">Buy ({{restaurant_price}})</button>
+">Buy ({{restaurant_price|number : fractionSize}}$)</button>
 
-  <!-- hotel info -->
-  <div style="background-image:url('../../assets/callout.png');background-repeat:no-repeat;background-size:contain;background-position:center;width:101px;height:108px;position: absolute;left: 2%;top: 13%;">
-   
+  <!-- cars shop info -->
+  <div style="background-image:url('../../assets/callout.png');background-repeat:no-repeat;background-size:contain;background-position:center;width:22%;height:108px;position: absolute;left: 7%;top: 16%;opacity: 0.7;padding-top:2%">
+           <span style="float: left;
+    padding-top: 15px;
+    font-size: 14px;color:black;margin-left:10px;font-weight:bold">{{purchases.cars_shop.cars+upgrades.cars.length*10}}</span>
+
+        <img src="../assets/car.png" style="width: 19%;float:left;margin: 13px 10px 0px 5px;">
+        <br>
+        <br>
+       <span style="float: left;
+    font-size: 14px;color:black;margin-left:10px;">{{(purchases.cars_shop.cars+upgrades.cars.length*10)*AppSettings.car_per_hour|number : fractionSize}}$/hour </span>
   </div>
+   <!-- cars shop upgrade btn -->
+  <button class="btn btn-success btn-xs {{money<AppSettings.ten_cars_price?'disabled':'active'}}" *ngIf="purchases.cars_shop.purchased" (click)="upgrade_cars_shop()"
+    style="position: absolute;left: 10%;top: 48%">Add 10 cars({{AppSettings.ten_cars_price|number : fractionSize}}$)</button>
+
+
+
+
+      <!-- hotel info -->
+  <div style="background-image:url('../../assets/callout.png');background-repeat:no-repeat;background-size:contain;background-position:center;width:22%;height:108px;position: absolute;left: 74%;top: -8%;opacity: 0.7;padding-top:2%">
+           <span style="float: left;
+    padding-top: 15px;
+    font-size: 14px;color:black;margin-left:10px;font-weight:bold">{{purchases.hotel.rooms+upgrades.rooms.length*10}}</span>
+
+        <img src="../assets/room.png" style="width: 19%;float:left;margin: 13px 10px 0px 5px;">
+        <br>
+        <br>
+       <span style="float: left;
+    font-size: 14px;color:black;margin-left:10px;">{{(purchases.hotel.rooms+upgrades.rooms.length*10)*AppSettings.room_per_hour|number : fractionSize}}$/hour </span>
+  </div>
+   <!-- hotel upgrade btn -->
+  <button class="btn btn-success btn-xs {{money<AppSettings.ten_rooms_price?'disabled':'active'}}" *ngIf="purchases.hotel.purchased" (click)="upgrade_hotel()"
+    style="position: absolute;left: 77%;top: 31%;">Add 10 rooms({{AppSettings.ten_rooms_price|number : fractionSize}}$)</button>
+
+
+
+
+
+
+        <!-- hospital info -->
+  <div style="background-image:url('../../assets/callout.png');background-repeat:no-repeat;background-size:contain;background-position:center;width:22%;height:108px;position: absolute;left: 46%;top: -13%;opacity: 0.7;padding-top:2%">
+           <span style="float: left;
+    padding-top: 15px;
+    font-size: 14px;color:black;margin-left:10px;font-weight:bold">{{purchases.hospital.beds+upgrades.beds.length*10}}</span>
+
+        <img src="../assets/bed.png" style="width: 19%;float:left;margin: 13px 10px 0px 5px;">
+        <br>
+        <br>
+       <span style="float: left;
+    font-size: 14px;color:black;margin-left:10px;">{{(purchases.hospital.beds+upgrades.beds.length*10)*AppSettings.bed_per_hour|number : fractionSize}}$/hour </span>
+  </div>
+   <!-- hospital upgrade btn -->
+  <button class="btn btn-success btn-xs {{money<AppSettings.ten_beds_price?'disabled':'active'}}" *ngIf="purchases.hospital.purchased" (click)="upgrade_hospital()"
+    style="position: absolute;left: 43%;top: 18%;">Add 10 beds({{AppSettings.ten_beds_price|number : fractionSize}}$)</button>
+
+
+
+
+
+        <!-- restaurant info -->
+  <div style="background-image:url('../../assets/callout.png');background-repeat:no-repeat;background-size:contain;background-position:center;width:22%;height:108px;position: absolute;left: 31%;top: 24%;opacity: 0.7;padding-top:2%">
+           <span style="float: left;
+    padding-top: 15px;
+    font-size: 14px;color:black;margin-left:10px;font-weight:bold">{{purchases.restaurant.tables+upgrades.tables.length*10}}</span>
+
+        <img src="../assets/table.png" style="width: 19%;float:left;margin: 13px 10px 0px 5px;">
+        <br>
+        <br>
+       <span style="float: left;
+    font-size: 14px;color:black;margin-left:10px;">{{(purchases.restaurant.tables+upgrades.tables.length*10)*AppSettings.table_per_hour|number : fractionSize}}$/hour </span>
+  </div>
+   <!-- restaurant upgrade btn -->
+  <button class="btn btn-success btn-xs {{money<AppSettings.ten_tables_price?'disabled':'active'}}" *ngIf="purchases.restaurant.purchased" (click)="upgrade_restaurant()"
+    style="position: absolute;left: 34%;top: 58%;">Add 10 tables({{AppSettings.ten_tables_price|number : fractionSize}}$)</button>
+
+
+
 
 
 </div>

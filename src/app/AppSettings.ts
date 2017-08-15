@@ -1,6 +1,6 @@
 export class AppSettings {
     public static HOTEL_PRICE = 4000000;
-    public static HOSPITAL_PRICE = 500000;
+    public static HOSPITAL_PRICE = 5000000;
     public static CARS_SHOP_PRICE = 3000000;
     public static RESTAURANT_PRICE = 2000000;
 // -------------------------- total 14 000 000
@@ -20,4 +20,9 @@ export class AppSettings {
     public static ten_rooms_price= 600000;
     public static ten_cars_price= 500000;
     public static ten_tables_price =50000;
+
+    public static team1_name= "team 1 name";
+    public static team2_name= "team 2 name";
+    public static team3_name= "team 3 name";
+    public static team4_name= "team 4 name";
 }
