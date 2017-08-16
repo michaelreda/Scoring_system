@@ -94,6 +94,9 @@ export class TeamComponent implements OnInit {
   }
 
   buy_hotel() {
+    if (this.password_check()) {
+      return;
+    }
     this.update_data_from_local_storage();
     if (this.bank >= AppSettings.HOTEL_PRICE) {
       console.log("team " + this.team + " bought hotel");
@@ -105,6 +108,9 @@ export class TeamComponent implements OnInit {
     }
   }
   buy_cars_shop() {
+    if (this.password_check()) {
+      return;
+    }
     this.update_data_from_local_storage();
     if (this.bank >= AppSettings.CARS_SHOP_PRICE) {
       console.log("team " + this.team + " bought cars shop");
@@ -117,6 +123,9 @@ export class TeamComponent implements OnInit {
   }
 
   buy_hospital() {
+    if (this.password_check()) {
+      return;
+    }
     this.update_data_from_local_storage();
     if (this.bank >= AppSettings.HOSPITAL_PRICE) {
       console.log("team " + this.team + " bought hospital");
@@ -129,6 +138,9 @@ export class TeamComponent implements OnInit {
   }
 
   buy_restaurant() {
+    if (this.password_check()) {
+      return;
+    }
     this.update_data_from_local_storage();
     if (this.bank >= AppSettings.RESTAURANT_PRICE) {
       console.log("team " + this.team + " bought restaurant");
@@ -141,6 +153,9 @@ export class TeamComponent implements OnInit {
   }
 
   upgrade_cars_shop() {
+    if (this.password_check()) {
+      return;
+    }
     this.update_data_from_local_storage();
     this.transaction(this.team, -AppSettings.ten_cars_price);
     this.upgrades.cars.push(Date.now());
@@ -154,6 +169,9 @@ export class TeamComponent implements OnInit {
     this.update_data_from_local_storage();
   }
   upgrade_hotel() {
+    if (this.password_check()) {
+      return;
+    }
     this.update_data_from_local_storage();
     this.transaction(this.team, -AppSettings.ten_rooms_price);
     this.upgrades.rooms.push(Date.now());
@@ -168,6 +186,9 @@ export class TeamComponent implements OnInit {
   }
 
   upgrade_hospital() {
+    if (this.password_check()) {
+      return;
+    }
     this.update_data_from_local_storage();
     this.transaction(this.team, -AppSettings.ten_beds_price);
     this.upgrades.beds.push(Date.now());
@@ -182,6 +203,9 @@ export class TeamComponent implements OnInit {
   }
 
   upgrade_restaurant() {
+    if (this.password_check()) {
+      return;
+    }
     this.update_data_from_local_storage();
     this.transaction(this.team, -AppSettings.ten_tables_price);
     this.upgrades.tables.push(Date.now());
@@ -302,13 +326,13 @@ export class TeamComponent implements OnInit {
         this.bank += parseInt(input);
         console.log(this.bank);
         switch (this.team) {
-          case 1: this.teams_money.team1 =this.bank ; break;
-          case 2: this.teams_money.team2 =this.bank ; break;
-          case 3: this.teams_money.team3 =this.bank ; break;
-          case 4: this.teams_money.team4 =this.bank ; break;
+          case 1: this.teams_money.team1 = this.bank; break;
+          case 2: this.teams_money.team2 = this.bank; break;
+          case 3: this.teams_money.team3 = this.bank; break;
+          case 4: this.teams_money.team4 = this.bank; break;
         }
         console.log(this.teams_money);
-        localStorage.setItem('money',JSON.stringify(this.teams_money));
+        localStorage.setItem('money', JSON.stringify(this.teams_money));
         this.update_data_from_local_storage();
       }
     }
@@ -320,7 +344,7 @@ export class TeamComponent implements OnInit {
     if (this.islocked <= 0 || !this.islocked) {
       var password = prompt("PASSWORD ?");
       var now = new Date(Date.now());
-      if (parseInt(password) ==  now.getMinutes()) {
+      if (parseInt(password) == now.getMinutes()) {
         this.islocked = 30;
         Observable.interval(1000).subscribe(() => {
           this.islocked -= 1;

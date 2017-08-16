@@ -15,7 +15,8 @@ var team_upgrades={
         }
 }
 var Schema = mongoose.Schema({
-    team1:team_upgrades,team2:team_upgrades,team3:team_upgrades,team4:team_upgrades
+    // team1:team_upgrades,team2:team_upgrades,team3:team_upgrades,team4:team_upgrades
+    backup:{type:String}
 })
 
   var Purchases = mongoose.model("purchases", Schema);

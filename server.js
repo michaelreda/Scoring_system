@@ -17,7 +17,8 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname + '/dist'));
 // Start the app by listening on the default
 // Heroku port
-app.listen(process.env.PORT || 8080);
+// app.listen(process.env.PORT || 8080);
+app.listen(8080);
 console.log("server started")
 
 // const path = require('path');
@@ -28,21 +29,30 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname + '/dist/index.html'));
 });
 
+app.options('/*', function (req, res) {
+  res.sendStatus(200);
+});
+
+
+
 var Money = require("./Money");
 var Purchases = require("./Purchases");
 var Upgrades = require("./Upgrades");
 
-Router.post('/backup', function (req, res) {
+app.post('/backup', function (req, res) {
   console.log(req.body);
-  let newMoney = new Money(req.body.money);
+  let newMoney = new Money();
+  newMoney.backup = req.body.money;
   newMoney.save((err) => {
     if (err) res.send(err);
     else {
-      let newPurchases = new Purchases(req.body.purchases);
+      let newPurchases = new Purchases();
+      newPurchases.backup = req.body.purchases;
       newPurchases.save((err) => {
         if (err) res.send(err);
         else {
-          let newUpgrades = new Purchases(req.body.upgrades);
+          let newUpgrades = new Purchases();
+          newUpgrades.backup = req.body.upgrades;
           newUpgrades.save((err) => {
             if (err) res.send(err);
             else {
@@ -55,6 +65,23 @@ Router.post('/backup', function (req, res) {
   })
 });
 
-Router.get('/restore', function (req, res) {
-  console.log(req);
+app.get('/restore_money', function (req, res) {
+  console.log(req.body);
+  Money.findOne({}, {}, { sort: { 'created_at': -1 } }, function (err, money) {
+    res.send(money);
+  });
+});
+
+app.get('/restore_upgrades', function (req, res) {
+  console.log(req.body);
+  Upgrades.findOne({}, {}, { sort: { 'created_at': -1 } }, function (err, upgrades) {
+    res.send(upgrades);
+  });
+});
+
+app.get('/restore_purchases', function (req, res) {
+  console.log(req.body);
+  Purchases.findOne({}, {}, { sort: { 'created_at': -1 } }, function (err, purchases) {
+    res.send(purchases);
+  });
 });

@@ -24,5 +24,5 @@ export class AppSettings {
     public static team1_name= "Madrid";
     public static team2_name= "Rome";
     public static team3_name= "Paris";
-    public static team4_name= "Rio de Janeiro";
+    public static team4_name= "San Paulo";
 }
