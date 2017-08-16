@@ -28,6 +28,7 @@
     "@types/jasmine": "~2.5.53",
     "@types/jasminewd2": "~2.0.2",
     "@types/node": "~6.0.60",
+    "body-parser": "^1.17.2",
     "core-js": "^2.4.1",
     "express": "^4.15.4",
     "mongoose": "^4.11.7",
