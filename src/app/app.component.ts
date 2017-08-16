@@ -1,6 +1,7 @@
 import { AppSettings } from './AppSettings';
 import { Component, NgZone } from '@angular/core';
 import { Observable } from "rxjs/Rx";
+import { Http } from '@angular/http';
 
 @Component({
   selector: 'app-root',
@@ -17,7 +18,7 @@ export class AppComponent {
   team4:Team;
   AppSettings;
   current_time:any;
-  constructor(private zone:NgZone){
+  constructor(private zone:NgZone,public http:Http){
     this.initialize();
     Observable.interval(1000).subscribe(x => {
           this.current_time=Date.now();
@@ -71,6 +72,15 @@ export class AppComponent {
     }
   }
 
+  backup(){
+    var money=JSON.parse(localStorage.getItem('money'));
+    var purchases=JSON.parse(localStorage.getItem('purchases'));
+    var upgrades=JSON.parse(localStorage.getItem('upgrades'));
+    this.http.post('https://landscoringsys.herokuapp.com/backup',{money:money,purchases:purchases,upgrades:upgrades}).subscribe((data)=>{
+      var res = JSON.parse(data['_body']);
+      console.log(res);
+    });
+  }
 }
 export interface Team{
   money:number;
