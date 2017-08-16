@@ -81,6 +81,13 @@ export class AppComponent {
       console.log(res);
     });
   }
+
+  restore(){
+    this.http.get('https://landscoringsys.herokuapp.com/restore').subscribe((data)=>{
+      var res = JSON.parse(data['_body']);
+      console.log(res);
+    });
+  }
 }
 export interface Team{
   money:number;

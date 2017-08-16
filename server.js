@@ -32,8 +32,8 @@ var Money = require("./Money");
 var Purchases = require("./Purchases");
 var Upgrades = require("./Upgrades");
 
-Router.get('/backup', function (req, res) {
-  console.log(req);
+Router.post('/backup', function (req, res) {
+  console.log(req.body);
   let newMoney = new Money(req.body.money);
   newMoney.save((err) => {
     if (err) res.send(err);
@@ -53,4 +53,8 @@ Router.get('/backup', function (req, res) {
       })
     }
   })
+});
+
+Router.get('/restore', function (req, res) {
+  console.log(req);
 });
