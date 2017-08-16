@@ -12,7 +12,8 @@ app.use(require('serve-static')(path.resolve('public')));
 app.use(bodyParser.urlencoded({ extended: false })); //this line must be on top of app config
 app.use(bodyParser.json());
 
-mongoose.connect(DB_URI,function(err){
+mongoose.connect(DB_URI, {
+  useMongoClient: true},function(err){
   if(err){
     console.log(err);
   }else{
