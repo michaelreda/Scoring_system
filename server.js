@@ -12,6 +12,13 @@ app.use(require('serve-static')(path.resolve('public')));
 app.use(bodyParser.urlencoded({ extended: false })); //this line must be on top of app config
 app.use(bodyParser.json());
 
+mongoose.connect(DB_URI,function(err){
+  if(err){
+    console.log(err);
+  }else{
+    console.log("connecting to global db..");
+  }
+});
 // Run the app by serving the static files
 // in the dist directory
 app.use(express.static(__dirname + '/dist'));
