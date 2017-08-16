@@ -42,17 +42,27 @@ var Upgrades = require("./Upgrades");
 app.post('/backup', function (req, res) {
   console.log(req.body);
   let newMoney = new Money();
+  console.log("1");
   newMoney.backup = req.body.money;
+  console.log("2");
   newMoney.save((err) => {
+    console.log("3");
     if (err) res.send(err);
     else {
+      console.log("4");
       let newPurchases = new Purchases();
+      console.log("5");
       newPurchases.backup = req.body.purchases;
+      console.log("6");
       newPurchases.save((err) => {
+        console.log("7");
         if (err) res.send(err);
         else {
+          console.log("8");
           let newUpgrades = new Purchases();
+          console.log("9");
           newUpgrades.backup = req.body.upgrades;
+          console.log("10");
           newUpgrades.save((err) => {
             console.log("hi");
             if (err) res.send(err);
