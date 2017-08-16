@@ -54,8 +54,10 @@ app.post('/backup', function (req, res) {
           let newUpgrades = new Purchases();
           newUpgrades.backup = req.body.upgrades;
           newUpgrades.save((err) => {
+            console.log("hi");
             if (err) res.send(err);
             else {
+              console.log("h2");
               res.sendStatus(200);
             }
           })
