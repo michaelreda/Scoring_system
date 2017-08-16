@@ -93,15 +93,15 @@ export class AppComponent {
     this.http.get('https://landscoringsys.herokuapp.com/restore_money').subscribe((data) => {
       var money = JSON.parse(data['_body']);
       console.log(money);
-      localStorage.setItem('money',money);
+      localStorage.setItem('money',money.backup);
       this.http.get('https://landscoringsys.herokuapp.com/restore_purchases').subscribe((data) => {
         var purchases = JSON.parse(data['_body']);
         console.log(purchases);
-        localStorage.setItem('purchases',purchases);
+        localStorage.setItem('purchases',purchases.backup);
         this.http.get('https://landscoringsys.herokuapp.com/restore_upgrades').subscribe((data) => {
           var upgrades = JSON.parse(data['_body']);
           console.log(upgrades);
-          localStorage.setItem('upgrades',upgrades);
+          localStorage.setItem('upgrades',upgrades.backup);
           // this.reload_page();
         });
       });
