@@ -3,23 +3,18 @@ const express = require('express');
 const app = express();
 
 var mongoose = require('mongoose');
-var DB_URI = "mongodb://admin:admin@ds145273.mlab.com:47920/scoring_system";
+var DB_URI = "mongodb://admin:admin@ds145273.mlab.com:45273/scoring_system";
 var bodyParser = require('body-parser');
-var Router = express.Router();
+// var Router = express.Router();
 var path = require('path');
 app.use(require('serve-static')(path.resolve('public')));
 
 app.use(bodyParser.urlencoded({ extended: false })); //this line must be on top of app config
 app.use(bodyParser.json());
 
-mongoose.connect(DB_URI, {
-  useMongoClient: true},function(err){
-  if(err){
-    console.log(err);
-  }else{
-    console.log("connecting to global db..");
-  }
-});
+mongoose.connect(DB_URI);
+console.log("connecting to global db..");
+ 
 // Run the app by serving the static files
 // in the dist directory
 app.use(express.static(__dirname + '/dist'));
