@@ -17,8 +17,8 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname + '/dist'));
 // Start the app by listening on the default
 // Heroku port
-// app.listen(process.env.PORT || 8080);
-app.listen(8080);
+app.listen(process.env.PORT || 8080);
+// app.listen(8080);
 console.log("server started")
 
 // const path = require('path');

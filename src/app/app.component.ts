@@ -82,22 +82,23 @@ export class AppComponent {
     var money = localStorage.getItem('money');
     var purchases = localStorage.getItem('purchases');
     var upgrades = localStorage.getItem('upgrades');
-    this.http.post('http://localhost:8080/backup', { money: money, purchases: purchases, upgrades: upgrades }).subscribe((data) => {
+    this.http.post('https://landscoringsys.herokuapp.com/backup', { money: money, purchases: purchases, upgrades: upgrades }).subscribe((data) => {
       var res = JSON.parse(data['_body']);
       console.log(res);
     });
+
   }
 
   restore() {
-    this.http.get('http://localhost:8080/restore_money').subscribe((data) => {
+    this.http.get('https://landscoringsys.herokuapp.com/restore_money').subscribe((data) => {
       var money = JSON.parse(data['_body']);
       console.log(money);
       localStorage.setItem('money',money);
-      this.http.get('http://localhost:8080/restore_purchases').subscribe((data) => {
+      this.http.get('https://landscoringsys.herokuapp.com/restore_purchases').subscribe((data) => {
         var purchases = JSON.parse(data['_body']);
         console.log(purchases);
         localStorage.setItem('purchases',purchases);
-        this.http.get('http://localhost:8080/restore_upgrades').subscribe((data) => {
+        this.http.get('https://landscoringsys.herokuapp.com/restore_upgrades').subscribe((data) => {
           var upgrades = JSON.parse(data['_body']);
           console.log(upgrades);
           localStorage.setItem('upgrades',upgrades);
