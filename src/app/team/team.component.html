@@ -18,21 +18,21 @@
   </div>
   <!-- hotel buy btn -->
   <button class="btn btn-warning btn-xs {{total_money<hotel_price?'disabled':'active'}}" *ngIf="!purchases.hotel.purchased" (click)="buy_hotel()"
-    style="position: absolute;left: 77%;top: 31%;">Buy ({{hotel_price|number}}$)</button>
+    style="position: absolute;left: 66%;top: 31%;">Buy ({{hotel_price|number}}$)[{{AppSettings.DEFAULT_ROOMS_NUM}} rooms]</button>
 
   <!-- cars_shop buy btn -->
   <button class="btn btn-warning btn-xs  {{total_money<cars_shop_price?'disabled':'active'}}" *ngIf="!purchases.cars_shop.purchased"
-    (click)="buy_cars_shop()" style="position: absolute;left: 10%;top: 48%;">Buy ({{cars_shop_price|number}}$)</button>
+    (click)="buy_cars_shop()" style="position: absolute;left: 10%;top: 48%;">Buy ({{cars_shop_price|number}}$)[{{AppSettings.DEFAULT_CARS_NUM}} cars]</button>
 
   <!-- hospital buy btn -->
   <button class="btn btn-warning btn-xs  {{total_money<hospital_price?'disabled':'active'}}" *ngIf="!purchases.hospital.purchased"
-    (click)="buy_hospital()" style="position: absolute;left: 43%;top: 18%;">Buy ({{hospital_price|number}}$)</button>
+    (click)="buy_hospital()" style="position: absolute;left: 43%;top: 18%;">Buy ({{hospital_price|number}}$)[{{AppSettings.DEFAULT_BEDS_NUM}} beds]</button>
 
   <!-- restaurant buy btn -->
   <button class="btn btn-warning btn-xs  {{total_money<restaurant_price?'disabled':'active'}}" *ngIf="!purchases.restaurant.purchased"
     (click)="buy_restaurant()" style="
 position: absolute;left: 34%;top: 58%;
-">Buy ({{restaurant_price|number}}$)</button>
+">Buy ({{restaurant_price|number}}$)[{{AppSettings.DEFAULT_TABLES_NUM}} tables]</button>
 
   <!-- cars shop info -->
   <div style="background-image:url('../../assets/callout.png');background-repeat:no-repeat;background-size:contain;background-position:center;width:22%;height:108px;position: absolute;left: 7%;top: 16%;opacity: 0.7;padding-top:2%">

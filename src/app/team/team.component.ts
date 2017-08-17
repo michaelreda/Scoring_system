@@ -301,6 +301,25 @@ export class TeamComponent implements OnInit {
         sum += this.calculate_hours(this.upgrades.rooms[i]) * 10 * AppSettings.room_per_hour;
       }
     }
+    if (this.purchases.hospital.purchased) {
+      sum += this.calculate_hours(this.purchases.hospital.purchased_since) * this.purchases.hospital.beds * AppSettings.bed_per_hour;
+      for (let i = 0; i < this.upgrades.beds.length; i++) {
+        sum += this.calculate_hours(this.upgrades.beds[i]) * 10 * AppSettings.bed_per_hour;
+      }
+    }
+    if (this.purchases.restaurant.purchased) {
+      sum += this.calculate_hours(this.purchases.restaurant.purchased_since) * this.purchases.restaurant.tables * AppSettings.table_per_hour;
+      for (let i = 0; i < this.upgrades.tables.length; i++) {
+        sum += this.calculate_hours(this.upgrades.tables[i]) * 10 * AppSettings.table_per_hour;
+      }
+    }
+
+    if (this.purchases.cars_shop.purchased) {
+      sum += this.calculate_hours(this.purchases.cars_shop.purchased_since) * this.purchases.cars_shop.cars * AppSettings.car_per_hour;
+      for (let i = 0; i < this.upgrades.cars.length; i++) {
+        sum += this.calculate_hours(this.upgrades.cars[i]) * 10 * AppSettings.car_per_hour;
+      }
+    }
     return sum;
   }
 
@@ -338,7 +357,7 @@ export class TeamComponent implements OnInit {
     }
 
   }
-  
+
   password_check() {
 
     if (this.islocked <= 0 || !this.islocked) {
