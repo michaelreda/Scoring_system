@@ -62,7 +62,7 @@ app.post('/backup', function (req, res) {
         if (err) res.send(err);
         else {
           console.log("8");
-          let newUpgrades = new Purchases();
+          let newUpgrades = new Upgrades();
           console.log("9");
           newUpgrades.backup = req.body.upgrades;
           console.log("10");

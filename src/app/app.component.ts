@@ -83,8 +83,13 @@ export class AppComponent {
     var purchases = localStorage.getItem('purchases');
     var upgrades = localStorage.getItem('upgrades');
     this.http.post('https://landscoringsys.herokuapp.com/backup', { money: money, purchases: purchases, upgrades: upgrades }).subscribe((data) => {
-      var res = JSON.parse(data['_body']);
+      var res = data['_body'];
       console.log(res);
+      if(res=="OK"){
+        alert("backed up");
+      }else{
+        alert("error backing up");
+      }
     });
 
   }
@@ -99,6 +104,7 @@ export class AppComponent {
         console.log(purchases);
         localStorage.setItem('purchases',purchases.backup);
         this.http.get('https://landscoringsys.herokuapp.com/restore_upgrades').subscribe((data) => {
+          console.log(data)
           var upgrades = JSON.parse(data['_body']);
           console.log(upgrades);
           localStorage.setItem('upgrades',upgrades.backup);
