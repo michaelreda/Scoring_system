@@ -266,7 +266,7 @@ export class TeamComponent implements OnInit {
     return sum;
   }
 
-  spent_money() {
+  public spent_money() {
     var sum = 0;
 
     if (this.purchases.hospital.purchased) {
@@ -293,7 +293,7 @@ export class TeamComponent implements OnInit {
     return sum;
   }
 
-  total_profit() {
+  public total_profit() {
     var sum = 0;
     if (this.purchases.hotel.purchased) {
       sum += this.calculate_hours(this.purchases.hotel.purchased_since) * this.purchases.hotel.rooms * AppSettings.room_per_hour;
@@ -304,7 +304,7 @@ export class TeamComponent implements OnInit {
     return sum;
   }
 
-  calculate_money() {
+  public calculate_money() {
     var money = 0;
     money += this.bank;//bank
     money += this.total_profit();
