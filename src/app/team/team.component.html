@@ -14,7 +14,7 @@
     left: 9%;
     bottom: 1%;
     float: left!important;">
-    <h3 style="margin-bottom: 0px;">{{team_name}}</h3>
+    <h3 style="margin-bottom: 0px;color: aliceblue;font-weight: bold;font-family: cursive;">{{team_name}}</h3>
   </div>
   <!-- hotel buy btn -->
   <button class="btn btn-warning btn-xs {{total_money<hotel_price?'disabled':'active'}}" *ngIf="!purchases.hotel.purchased" (click)="buy_hotel()"
