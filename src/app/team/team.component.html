@@ -116,27 +116,4 @@ position: absolute;left: 34%;top: 58%;
 
 
 
-<!-- PASSWORD input modal -->
-<div id="passModal" *ngIf="show_pass_prompt" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Enter Password</h4>
-      </div>
-      <div class="modal-body">
-        <input type="password" class="form-control" #pw>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" (click)="check_password_entered(pw)" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-
-
 </div>
