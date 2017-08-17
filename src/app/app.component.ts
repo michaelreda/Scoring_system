@@ -23,6 +23,7 @@ export class AppComponent {
     Observable.interval(1000).subscribe(x => {
       this.current_time = Date.now();
       if (new Date().getMinutes() == 0 && new Date().getSeconds() == 0) {
+        this.backup();
         this.zone.runOutsideAngular(() => {
           this.reload_page();
         });

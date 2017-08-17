@@ -82,21 +82,21 @@ app.post('/backup', function (req, res) {
 
 app.get('/restore_money', function (req, res) {
   console.log(req.body);
-  Money.findOne({}, {}, { sort: { 'created_at': 1 } }, function (err, money) {
+  Money.findOne({}, {}, { sort: { '_id': -1 } }, function (err, money) {
     res.send(money);
   });
 });
 
 app.get('/restore_upgrades', function (req, res) {
   console.log(req.body);
-  Upgrades.findOne({}, {}, { sort: { 'created_at': 1 } }, function (err, upgrades) {
+  Upgrades.findOne({}, {}, { sort:{ '_id': -1 } }, function (err, upgrades) {
     res.send(upgrades);
   });
 });
 
 app.get('/restore_purchases', function (req, res) {
   console.log(req.body);
-  Purchases.findOne({}, {}, { sort: { 'created_at': 1 } }, function (err, purchases) {
+  Purchases.findOne({}, {}, { sort: { '_id': -1 } }, function (err, purchases) {
     res.send(purchases);
   });
 });
