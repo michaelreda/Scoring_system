@@ -102,7 +102,7 @@ export class AppComponent {
           var upgrades = JSON.parse(data['_body']);
           console.log(upgrades);
           localStorage.setItem('upgrades',upgrades.backup);
-          // this.reload_page();
+          this.reload_page();
         });
       });
     });

@@ -94,7 +94,7 @@ export class TeamComponent implements OnInit {
   }
 
   buy_hotel() {
-    if (this.password_check()) {
+    if (!this.password_check()) {
       return;
     }
     this.update_data_from_local_storage();
@@ -108,7 +108,7 @@ export class TeamComponent implements OnInit {
     }
   }
   buy_cars_shop() {
-    if (this.password_check()) {
+    if (!this.password_check()) {
       return;
     }
     this.update_data_from_local_storage();
@@ -123,7 +123,7 @@ export class TeamComponent implements OnInit {
   }
 
   buy_hospital() {
-    if (this.password_check()) {
+    if (!this.password_check()) {
       return;
     }
     this.update_data_from_local_storage();
@@ -138,7 +138,7 @@ export class TeamComponent implements OnInit {
   }
 
   buy_restaurant() {
-    if (this.password_check()) {
+    if (!this.password_check()) {
       return;
     }
     this.update_data_from_local_storage();
@@ -153,7 +153,7 @@ export class TeamComponent implements OnInit {
   }
 
   upgrade_cars_shop() {
-    if (this.password_check()) {
+    if (!this.password_check()) {
       return;
     }
     this.update_data_from_local_storage();
@@ -169,7 +169,7 @@ export class TeamComponent implements OnInit {
     this.update_data_from_local_storage();
   }
   upgrade_hotel() {
-    if (this.password_check()) {
+    if (!this.password_check()) {
       return;
     }
     this.update_data_from_local_storage();
@@ -186,7 +186,7 @@ export class TeamComponent implements OnInit {
   }
 
   upgrade_hospital() {
-    if (this.password_check()) {
+    if (!this.password_check()) {
       return;
     }
     this.update_data_from_local_storage();
@@ -203,7 +203,7 @@ export class TeamComponent implements OnInit {
   }
 
   upgrade_restaurant() {
-    if (this.password_check()) {
+    if (!this.password_check()) {
       return;
     }
     this.update_data_from_local_storage();
@@ -338,7 +338,7 @@ export class TeamComponent implements OnInit {
     }
 
   }
-
+  
   password_check() {
 
     if (this.islocked <= 0 || !this.islocked) {
