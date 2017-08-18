@@ -18,7 +18,7 @@ export class AppSettings {
 
     public static ten_beds_price=800000;
     public static ten_rooms_price= 600000;
-    public static ten_cars_price= 500000;
+    public static ten_cars_price= 1500000;
     public static ten_tables_price =50000;
 
     public static team1_name= "Madrid";
