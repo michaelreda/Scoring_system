@@ -1,0 +1,6 @@
+6:51
+
+
+money	{"team1":200000,"team2":0,"team3":600000,"team4":5000000}	
+purchases	{"team1":{"hotel":{"purchased":false,"rooms":0},"hospital":{"purchased":true,"beds":50,"purchased_since":1503055371403},"cars_shop":{"purchased":false,"cars":0},"restaurant":{"purchased":false,"tables":0}},"team2":{"hotel":{"purchased":true,"rooms":100,"purchased_since":1503055131509},"hospital":{"purchased":false,"beds":0},"cars_shop":{"purchased":false,"cars":0},"restaurant":{"purchased":false,"tables":0}},"team3":{"hotel":{"purchased":false,"rooms":0},"hospital":{"purchased":true,"beds":50,"purchased_since":1503055461098},"cars_shop":{"purchased":false,"cars":0},"restaurant":{"purchased":false,"tables":0}},"team4":{"hotel":{"purchased":false,"rooms":0},"hospital":{"purchased":false,"beds":0},"cars_shop":{"purchased":false,"cars":0},"restaurant":{"purchased":false,"tables":0}}}	
+upgrades	{"team1":{"beds":[1503055393042],"rooms":[],"cars":[],"tables":[]},"team2":{"beds":[],"rooms":[1503055138980],"cars":[],"tables":[]},"team3":{"beds":[],"rooms":[],"cars":[],"tables":[]},"team4":{"beds":[],"rooms":[],"cars":[],"tables":[]}}	
